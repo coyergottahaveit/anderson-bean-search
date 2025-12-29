@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anderson Bean Boot Inventory Search</title>
+<style>
+body { font-family: Arial, sans-serif; padding: 20px; }
+input { width: 100%; padding: 10px; margin: 10px 0; }
+button { padding: 10px 15px; }
+.store { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Anderson Bean Boot Inventory Search</h1>
+<p>This tool links you to inventory across multiple retailers.</p>
+
+<input id="query" placeholder="Search boot style, leather, or size">
+<button onclick="search()">Search</button>
+
+<div id="results"></div>
+
+<script>
+function search() {
+  const q = document.getElementById("query").value;
+  const links = [
+    { name: "Cavender’s", url: `https://www.cavenders.com/search?q=${q}` },
+    { name: "Little Joe’s Boots", url: `https://littlejoesboots.net/?s=${q}` },
+    { name: "Shop Long Creek", url: `https://shoplongcreek.com/search?q=${q}` }
+  ];
+
+  let html = "";
+  links.forEach(l => {
+    html += `<div class="store"><a href="${l.url}" target="_blank">${l.name}</a></div>`;
+  });
+
+  document.getElementById("results").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
